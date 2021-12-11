@@ -1,16 +1,30 @@
 package com.hebert.bookstore.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-public class Livro {
+@Entity
+public class Livro implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
 	// atributos da classe categoria
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String titulo;
 	private String nome_autor;
 	private String texto;
 
 	// livro obrigatoriamene tem uma categoria
-
+	@ManyToOne//muitos livros pra uma categoria
+	@JoinColumn(name = "categoria_id")
 	private Categoria categoria;
 
 	public Livro() {
