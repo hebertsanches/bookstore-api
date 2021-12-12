@@ -2,12 +2,15 @@ package com.hebert.bookstore.domain;
 
 import java.io.Serializable;
 import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Livro implements Serializable{
@@ -21,7 +24,8 @@ public class Livro implements Serializable{
 	private String titulo;
 	private String nome_autor;
 	private String texto;
-
+	
+	@JsonIgnore//-> para ignorar a categoria, evitando a serializacao.
 	// livro obrigatoriamene tem uma categoria
 	@ManyToOne//muitos livros pra uma categoria
 	@JoinColumn(name = "categoria_id")
